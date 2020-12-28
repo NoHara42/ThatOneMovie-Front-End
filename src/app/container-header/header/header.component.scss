@@ -1,0 +1,30 @@
+.logo {
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: xx-large;
+  color: white;
+}
+
+.header-text {
+  font-family: Roboto;
+  font-size: medium;
+  color: white;
+  font-weight: 500;
+}
+
+
+@media screen and (max-width: 600px) {
+  .mobile-responsive {
+    flex-direction: column-reverse !important;
+    margin-top: 1.75rem;
+  }
+
+  .responsive-margin {
+    margin-right: 0;
+  }
+}
+@media screen and (min-width: 600px) {
+  .responsive-margin {
+    margin-right: 2rem;
+  }
+}

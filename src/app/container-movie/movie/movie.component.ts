@@ -9,6 +9,7 @@ import { EventEmitter } from '@angular/core';
 export class MovieComponent implements OnInit {
 
   @Input() username: String;
+  @Input() posterImgUrl: String;
   @Output() usernameEmitter = new EventEmitter();
 
   constructor() { }
