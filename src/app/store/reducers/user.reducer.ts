@@ -7,7 +7,7 @@ export interface UserState {
 
 const INITIAL: UserState = {username: ''};
 
-export function reducer(state = INITIAL, action: StoreAction<any>): UserState {
+export function userReducer(state = INITIAL, action: StoreAction<any>): UserState {
   switch(action.type) {
     case UserActionTypes.UPDATE_USERNAME_ACTION:
       return {...state, username: action.payload as string}

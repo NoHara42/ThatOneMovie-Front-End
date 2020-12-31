@@ -1,0 +1,22 @@
+<form (ngSubmit)="handleSubmitData()">
+  <h2 mat-dialog-title>Critic-mode activated:</h2>
+  <mat-dialog-content>
+    <p>
+      You can write a quick description of your ideal film here.
+    </p>
+    <p>
+      We will semantically compare your description with all known descriptions of movies from movie databases - all in the name of finding <b>that</b> film you're looking for. Yay!
+    </p>
+      <mat-form-field>
+        <textarea matInput
+          [(formControl)]="this.criticModeTextDataControl"
+          cdkTextareaAutosize
+          #autosize="cdkTextareaAutosize">
+        </textarea>
+      </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-raised-button mat-dialog-close>Cancel</button>
+      <button mat-raised-button type="submit" color="accent" [mat-dialog-close]="true" cdkFocusInitial>Submit</button>
+    </mat-dialog-actions>
+  </form>

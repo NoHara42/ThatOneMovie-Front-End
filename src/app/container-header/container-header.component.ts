@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { selectCriticModeText } from '../store/app.store';
+import { updateCriticModeTextAction } from '../store/reducers/criticModeText.actions';
 
 @Component({
   selector: 'app-container-header',
@@ -7,9 +11,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContainerHeaderComponent implements OnInit {
 
-  constructor() { }
+  public criticModeText$: Observable<String>;
+
+  constructor(private store: Store) { }
+
 
   ngOnInit(): void {
+    this.criticModeText$ = this.store.select(selectCriticModeText);
+  }
+
+  handleSubmit($event) {
+    this.store.dispatch(updateCriticModeTextAction($event));
   }
 
 }

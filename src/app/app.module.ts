@@ -15,6 +15,12 @@ import { ContainerHeaderComponent } from './container-header/container-header.co
 import { HeaderComponent } from './container-header/header/header.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ContainerCriticModeModalComponent } from './container-header/header/container-critic-mode-modal/container-critic-mode-modal.component';
+import { CriticModeModalComponent } from './container-header/header/container-critic-mode-modal/critic-mode-modal/critic-mode-modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatCommonModule } from '@angular/material/core';
+import { MaterialModule } from './material/material.module';
+import { FormsModule, NgControl, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,6 +29,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MovieComponent,
     ContainerHeaderComponent,
     HeaderComponent,
+    CriticModeModalComponent,
+    ContainerCriticModeModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,8 +42,10 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
       maxAge: 50,
       logOnly: environment.production
     }),
-    MatSelectModule,
-    MatSlideToggleModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
   ],
   providers: [Store],
   bootstrap: [AppComponent],
