@@ -24,6 +24,6 @@ export const selectUsername = (state: State) => {
 }
 
 export const selectCriticModeText = (state: State) => {
-  return state.userState.username;
+  return state.criticModeTextState.criticModeText;
 }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { updateCriticModeTextAction } from 'src/app/store/reducers/criticModeText.actions';
 
 @Component({
   selector: 'app-container-critic-mode-modal',
@@ -12,7 +13,7 @@ export class ContainerCriticModeModalComponent {
 
   handleSubmitData($event) {
     console.log("Dispatching:", $event);
-    // this.store.dispatch(updateCriticModeTextAction($event));
+    this.store.dispatch(updateCriticModeTextAction($event));
   }
 
 }
