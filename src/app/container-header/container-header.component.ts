@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectCriticModeText } from '../store/app.store';
-import { updateCriticModeTextAction } from '../store/reducers/criticModeText.actions';
+import {selectCriticModeText, selectUsername} from '../store/app.store';
+import { updateCriticModeTextAction } from '../store/actions/criticModeText.actions';
 
 @Component({
   selector: 'app-container-header',
@@ -11,16 +11,18 @@ import { updateCriticModeTextAction } from '../store/reducers/criticModeText.act
 })
 export class ContainerHeaderComponent implements OnInit {
 
-  public criticModeText$: Observable<String>;
+  public criticModeText$: Observable<string>;
+  public username$: Observable<string>;
 
   constructor(private store: Store) { }
 
 
   ngOnInit(): void {
     this.criticModeText$ = this.store.select(selectCriticModeText);
+    this.username$ = this.store.select(selectUsername);
   }
 
-  handleSubmit($event) {
+  handleSubmit($event): void {
     this.store.dispatch(updateCriticModeTextAction($event));
   }
 

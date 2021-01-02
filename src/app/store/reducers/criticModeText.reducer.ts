@@ -1,5 +1,5 @@
 import { StoreAction } from "../app.store";
-import { CriticModeTextActionTypes } from "./criticModeText.actions";
+import { CriticModeTextActionTypes } from "../actions/criticModeText.actions";
 
 export interface CriticModeTextState {
   criticModeText: String;

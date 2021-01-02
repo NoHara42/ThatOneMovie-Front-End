@@ -1,0 +1,16 @@
+<div class="login-container">
+  <form [formGroup]="user">
+    <h2> Welcome to That One Movie</h2>
+    <label>
+      Username
+      <input matNativeControl formControlName="username" type="text" placeholder="username"/>
+    </label>
+    <label>
+      Password
+      <input matNativeControl formControlName="password" type="password" placeholder="password"/>
+    </label>
+    <button mat-raised-button class="mat-primary">Login</button>
+    <button mat-raised-button class="mat-primary" (click)="signIn()">Login with Google</button>
+    <span>Don't have an account? <a href="register">Register</a></span>
+  </form>
+</div>

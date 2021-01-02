@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectUsername } from '../store/app.store';
-import { updateUserNameAction } from '../store/reducers/user.actions';
 
 @Component({
   selector: 'app-container-movie',
@@ -18,9 +17,4 @@ export class ContainerMovieComponent implements OnInit {
   ngOnInit(): void {
     this.username$ = this.store.select(selectUsername);
   }
-
-  handleClick($event) {
-    this.store.dispatch(updateUserNameAction($event));
-  }
-
 }

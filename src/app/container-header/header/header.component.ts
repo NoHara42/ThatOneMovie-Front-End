@@ -1,8 +1,7 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { EventEmitter } from 'events';
-import { ContainerCriticModeModalComponent } from './container-critic-mode-modal/container-critic-mode-modal.component';
-import { CriticModeModalComponent } from './container-critic-mode-modal/critic-mode-modal/critic-mode-modal.component';
+import {Component, Input, Output} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {EventEmitter} from 'events';
+import {ContainerCriticModeModalComponent} from './container-critic-mode-modal/container-critic-mode-modal.component';
 
 @Component({
   selector: 'app-header',
@@ -12,6 +11,7 @@ import { CriticModeModalComponent } from './container-critic-mode-modal/critic-m
 export class HeaderComponent {
 
   @Input() criticModeText: string;
+  @Input() username: string
   @Output() criticModeTextEmitter = new EventEmitter();
   isCriticModeActive: boolean;
 
@@ -19,9 +19,9 @@ export class HeaderComponent {
     this.isCriticModeActive = false;
   }
 
-  openDialog() {
+  openDialog(): void {
     if (!this.isCriticModeActive) {
-      //case: critic mode activated
+      // case: critic mode activated
       this.isCriticModeActive = true;
 
       const dialogRef = this.dialog.open(ContainerCriticModeModalComponent, {
@@ -34,11 +34,11 @@ export class HeaderComponent {
         console.log('The dialog was closed');
       });
     } else {
-      //case: critic mode deactivated
+      // case: critic mode deactivated
       this.isCriticModeActive = false;
 
-      //TODO:
-      //reload the movies view once the critic mode has been deactivated
+      // TODO:
+      // reload the movies view once the critic mode has been deactivated
     }
   }
 }

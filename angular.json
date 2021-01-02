@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "ThatOneMovie-Front-End"
+  "defaultProject": "ThatOneMovie-Front-End",
+  "cli": {
+    "analytics": false
+  }
 }

@@ -1,0 +1,14 @@
+<div class="register-container">
+  <form [formGroup]="user">
+    <h2> Welcome to Movie Recommender</h2>
+    <label>
+      Username
+      <input matNativeControl formControlName="username" type="text" placeholder="username"/>
+    </label>
+    <label>
+      Password
+      <input matNativeControl formControlName="password" type="password" placeholder="password"/>
+    </label>
+    <button mat-raised-button class="mat-primary" (click)="registerUser()">Register</button>
+  </form>
+</div>

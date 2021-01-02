@@ -1,3 +1,6 @@
 <app-header
-  [criticModeText] = "criticModeText$ | async">
+  [criticModeText] = "criticModeText$ | async"
+  (criticModeTextEmitter)="handleSubmit($event)"
+  [username]="username$ | async"
+>
 </app-header>

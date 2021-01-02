@@ -1,16 +1,18 @@
-import {StoreAction} from "../app.store";
-import { UserActionTypes } from "./user.actions";
+import {StoreAction} from '../app.store';
+import {UserActionTypes, UserResponsePayload} from '../actions/user.actions';
 
 export interface UserState {
-  username: String;
+  username: string;
+  token: string;
 }
 
-const INITIAL: UserState = {username: ''};
+const INITIAL: UserState = {username: '', token: ''};
 
-export function userReducer(state = INITIAL, action: StoreAction<any>): UserState {
-  switch(action.type) {
-    case UserActionTypes.UPDATE_USERNAME_ACTION:
-      return {...state, username: action.payload as string}
+export function userReducer(state = INITIAL, action: StoreAction<UserResponsePayload>): UserState {
+  switch (action.type) {
+    case UserActionTypes.REGISTER_USER_ACTION_SUCCESS:
+      console.log(action.payload);
+      return {...state, token: action.payload.token, username: action.payload.username};
     default:
       return state;
   }
