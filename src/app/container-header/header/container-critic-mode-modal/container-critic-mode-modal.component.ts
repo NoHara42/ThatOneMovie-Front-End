@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { updateCriticModeTextAction } from 'src/app/store/reducers/criticModeText.actions';
+import {Component} from '@angular/core';
+import {Store} from '@ngrx/store';
+import {updateCriticModeTextAction} from 'src/app/store/actions/criticModeText.actions';
 
 @Component({
   selector: 'app-container-critic-mode-modal',
