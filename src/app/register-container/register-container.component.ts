@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {registerUserAction, UserPayload} from '../store/actions/user.actions';
+import {Store} from '@ngrx/store';
 
 @Component({
   selector: 'app-register-container',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterContainerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
   }
 
+  handleRegisterUser(userPayload: UserPayload): void {
+    this.store.dispatch(registerUserAction(userPayload));
+  }
 }

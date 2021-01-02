@@ -1,1 +1,5 @@
-<app-login></app-login>
+<app-login
+  (emitSignInUser)="handleUserSignIn($event)"
+  (emitSocialMediaSignIn)="handleSocialMediaSignIn()"
+  [error]="error$ | async"
+></app-login>

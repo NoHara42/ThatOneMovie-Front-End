@@ -26,6 +26,16 @@ import { RegisterContainerComponent } from './register-container/register-contai
 import { RegisterComponent } from './register-container/register/register.component';
 import {EffectsModule} from '@ngrx/effects';
 import {UserEffects} from './store/effects/user.effects';
+import { GoogleApiModule, NG_GAPI_CONFIG, NgGapiClientConfig } from 'ng-gapi';
+
+const gapiClientConfig: NgGapiClientConfig = {
+  client_id: '210021820396-1nnh4ocv1sks776cc9tam33gf37en6jp.apps.googleusercontent.com',
+  discoveryDocs: ['https://analyticsreporting.googleapis.com/$discovery/rest?version=v4'],
+  scope: [
+    'https://www.googleapis.com/auth/analytics.readonly',
+    'https://www.googleapis.com/auth/analytics'
+  ].join(' ')
+};
 
 @NgModule({
   declarations: [
@@ -56,6 +66,10 @@ import {UserEffects} from './store/effects/user.effects';
     EffectsModule.forRoot([
       UserEffects
     ]),
+    GoogleApiModule.forRoot({
+      provide: NG_GAPI_CONFIG,
+      useValue: gapiClientConfig
+    }),
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,

@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {authenticateUserAction, socialMediaAuthenticateUserAction, UserPayload} from '../store/actions/user.actions';
+import {Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
+import {selectError} from '../store/app.store';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-login-container',
@@ -7,9 +12,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginContainerComponent implements OnInit {
 
-  constructor() { }
+  error$: Observable<string>;
+
+  constructor(private store: Store, private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.error$ = this.store.select(selectError);
   }
 
+  handleUserSignIn(userPayload: UserPayload): void {
+    this.store.dispatch(authenticateUserAction(userPayload));
+  }
+
+  handleSocialMediaSignIn(): void {
+    this.authService.socialMediaSignIn();
+  }
 }

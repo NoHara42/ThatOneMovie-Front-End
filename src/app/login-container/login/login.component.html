@@ -9,8 +9,9 @@
       Password
       <input matNativeControl formControlName="password" type="password" placeholder="password"/>
     </label>
-    <button mat-raised-button class="mat-primary">Login</button>
-    <button mat-raised-button class="mat-primary" (click)="signIn()">Login with Google</button>
-    <span>Don't have an account? <a href="register">Register</a></span>
+    <button mat-raised-button class="mat-primary" (click)="signIn()">Login</button>
+    <button mat-raised-button class="mat-primary" (click)="socialMediaSignIn()">Login with Google</button>
+    <span>Don't have an account? <a routerLink="register">Register</a></span>
+    <span *ngIf="error" class="error-span">{{error}}</span>
   </form>
 </div>

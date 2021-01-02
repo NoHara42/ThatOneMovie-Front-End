@@ -17,13 +17,16 @@ export interface StoreAction<T> extends Action {
 export const reducers: ActionReducerMap<State> = {
   userState: userReducer,
   criticModeTextState: criticModeTextReducer,
-}
+};
 
 export const selectUsername = (state: State) => {
   return state.userState.username;
-}
+};
 
 export const selectCriticModeText = (state: State) => {
   return state.criticModeTextState.criticModeText;
-}
+};
 
+export const selectError = (state: State) => state.userState.error;
+
+export const selectToken = (state: State) => state.userState.token;

@@ -11,8 +11,8 @@ export class ContainerCriticModeModalComponent {
 
   constructor(private store: Store) { }
 
-  handleSubmitData($event) {
-    console.log("Dispatching:", $event);
+  handleSubmitData($event): void {
+    console.log('Dispatching:', $event);
     this.store.dispatch(updateCriticModeTextAction($event));
   }
 

@@ -1,6 +1,5 @@
-import {Component, Input, Output} from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import {EventEmitter} from 'events';
 import {ContainerCriticModeModalComponent} from './container-critic-mode-modal/container-critic-mode-modal.component';
 
 @Component({
@@ -11,8 +10,8 @@ import {ContainerCriticModeModalComponent} from './container-critic-mode-modal/c
 export class HeaderComponent {
 
   @Input() criticModeText: string;
-  @Input() username: string
-  @Output() criticModeTextEmitter = new EventEmitter();
+  @Input() username: string;
+  @Output() criticModeTextEmitter = new EventEmitter<any>();
   isCriticModeActive: boolean;
 
   constructor(public dialog: MatDialog) {

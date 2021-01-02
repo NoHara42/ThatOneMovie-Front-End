@@ -6,7 +6,7 @@ import {
   authenticateUserActionFailed,
   authenticateUserActionSuccess,
   registerUserActionFailed,
-  registerUserActionSuccess,
+  registerUserActionSuccess, socialMediaAuthenticateUserFailedAction, socialMediaAuthenticateUserSuccessAction,
   UserActionTypes,
   UserPayload
 } from '../actions/user.actions';
@@ -30,7 +30,8 @@ export class UserEffects {
     switchMap((action: StoreAction<UserPayload>) => {
       return this.authService.authenticateUser(action.payload).pipe(
         map(response => authenticateUserActionSuccess(response)),
-        catchError((error) => of(authenticateUserActionFailed(error.message)))
+        tap(() => this.router.navigate(['/home'])),
+        catchError((error) => of(authenticateUserActionFailed(error.error)))
       );
     })
   );

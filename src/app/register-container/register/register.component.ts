@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Store} from '@ngrx/store';
-import {registerUserAction} from '../../store/actions/user.actions';
+import {registerUserAction, UserPayload} from '../../store/actions/user.actions';
 
 @Component({
   selector: 'app-register',
@@ -15,6 +15,8 @@ export class RegisterComponent implements OnInit {
     password: new FormControl('')
   });
 
+  @Output() emitRegisterUser = new EventEmitter<UserPayload>();
+
 
   constructor(private store: Store) { }
 
@@ -22,6 +24,6 @@ export class RegisterComponent implements OnInit {
   }
 
   registerUser(): void {
-    this.store.dispatch(registerUserAction(this.user.value));
+    this.emitRegisterUser.emit(this.user.value);
   }
 }
