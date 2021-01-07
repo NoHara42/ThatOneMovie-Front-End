@@ -78,6 +78,6 @@ const gapiClientConfig: NgGapiClientConfig = {
     CommonModule,
   ],
   providers: [Store, HttpClient, AuthService],
-  bootstrap: [ContainerHomeComponent],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
