@@ -25,6 +25,7 @@ export function userReducer(state = INITIAL, action: StoreAction<UserResponsePay
       return {...state, error: errorAuthenticate};
     case UserActionTypes.AUTHENTICATE_USER_ACTION_SUCCESS:
       const userDataSignIn = action.payload as UserResponsePayload;
+      console.log('success', action.payload);
       return {...state, username: userDataSignIn.username, token: userDataSignIn.token};
 
     case UserActionTypes.SOCIAL_MEDIA_AUTHENTICATE_USER_FAILED:

@@ -14,12 +14,15 @@ import {catchError, map, switchMap, tap} from 'rxjs/operators';
 import {StoreAction} from '../app.store';
 import {Store} from '@ngrx/store';
 import {of} from 'rxjs';
+import { MoviesService } from 'src/app/services/movies.service';
+import { moviesGetAction } from '../actions/movies.actions';
 
 @Injectable()
 export class UserEffects {
 
   constructor(private action$: Actions,
               private store: Store,
+              private moviesService: MoviesService,
               private authService: AuthService,
               private router: Router) {
   }
@@ -33,6 +36,18 @@ export class UserEffects {
         tap(() => this.router.navigate(['/home'])),
         catchError((error) => of(authenticateUserActionFailed(error.error)))
       );
+    })
+  );
+
+  @Effect()
+    getMovies = this.action$.pipe(ofType(UserActionTypes.AUTHENTICATE_USER_ACTION_SUCCESS),
+    switchMap((action: StoreAction<UserPayload>) => {
+      return this.moviesService.getMoviesFromBackend().pipe(
+       map((response) => {
+        console.log('movies effect', action.payload);
+        return moviesGetAction(response);
+       })
+      )
     })
   );
 

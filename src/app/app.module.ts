@@ -20,13 +20,14 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {LoginContainerComponent} from './login-container/login-container.component';
 import {LoginComponent} from './login-container/login/login.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './container-home/home/home.component';
 import {AuthService} from './services/auth.service';
 import { RegisterContainerComponent } from './register-container/register-container.component';
 import { RegisterComponent } from './register-container/register/register.component';
 import {EffectsModule} from '@ngrx/effects';
 import {UserEffects} from './store/effects/user.effects';
 import { GoogleApiModule, NG_GAPI_CONFIG, NgGapiClientConfig } from 'ng-gapi';
+import { ContainerHomeComponent } from './container-home/container-home.component';
 
 const gapiClientConfig: NgGapiClientConfig = {
   client_id: '210021820396-1nnh4ocv1sks776cc9tam33gf37en6jp.apps.googleusercontent.com',
@@ -51,6 +52,7 @@ const gapiClientConfig: NgGapiClientConfig = {
     HomeComponent,
     RegisterContainerComponent,
     RegisterComponent,
+    ContainerHomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,6 +78,6 @@ const gapiClientConfig: NgGapiClientConfig = {
     CommonModule,
   ],
   providers: [Store, HttpClient, AuthService],
-  bootstrap: [AppComponent],
+  bootstrap: [ContainerHomeComponent],
 })
 export class AppModule { }

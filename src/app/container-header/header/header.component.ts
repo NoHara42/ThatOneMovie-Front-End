@@ -1,5 +1,7 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
+import { authenticateUserActionSuccess } from 'src/app/store/actions/user.actions';
 import {ContainerCriticModeModalComponent} from './container-critic-mode-modal/container-critic-mode-modal.component';
 
 @Component({
@@ -14,7 +16,7 @@ export class HeaderComponent {
   @Output() criticModeTextEmitter = new EventEmitter<any>();
   isCriticModeActive: boolean;
 
-  constructor(public dialog: MatDialog) {
+  constructor(private store: Store, public dialog: MatDialog) {
     this.isCriticModeActive = false;
   }
 
@@ -39,5 +41,9 @@ export class HeaderComponent {
       // TODO:
       // reload the movies view once the critic mode has been deactivated
     }
+  }
+
+  handleGetMovies() {
+    this.store.dispatch(authenticateUserActionSuccess("hello professor"));
   }
 }

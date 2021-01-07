@@ -1,16 +1,13 @@
 <div class="d-flex flex-row">
   <div class="card m-4" style="width: 24rem;">
-    <img class="card-img-top" src="{{posterImgUrl}}" alt="Card image cap"/>
+    <img class="card-img-top" src="{{posterImgUrl}}"/>
     <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <h5 class="card-title">{{title}}</h5>
+      <p class="card-text">{{description}}</p>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">Cras justo odio</li>
+      <li class="list-group-item">{{releaseDate}}</li>
+      <li class="list-group-item">{{popularity}}</li>
     </ul>
-    <div class="card-body">
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
-    </div>
   </div>
 </div>

@@ -15,7 +15,7 @@ import {Router} from '@angular/router';
 @Injectable()
 export class AuthService {
 
-  private readonly BASE_URL = 'http://localhost:3000';
+  private readonly BASE_URL = 'http://localhost:5000';
   private readonly REGISTER = '/users/register';
   private readonly SIGN_IN = '/users/signIn';
   private readonly GET_TOKEN = '/users/getToken';

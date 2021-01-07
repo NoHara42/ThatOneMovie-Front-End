@@ -3,9 +3,11 @@ import { UserState } from "./reducers/user.reducer";
 import { CriticModeTextState } from "./reducers/criticModeText.reducer";
 import { userReducer } from "./reducers/user.reducer"
 import { criticModeTextReducer } from "./reducers/criticModeText.reducer"
+import { moviesReducer, MoviesState } from "./reducers/movies.reducer";
 
 export interface State {
   userState: UserState;
+  moviesState: MoviesState;
   criticModeTextState: CriticModeTextState;
 }
 
@@ -17,6 +19,7 @@ export interface StoreAction<T> extends Action {
 export const reducers: ActionReducerMap<State> = {
   userState: userReducer,
   criticModeTextState: criticModeTextReducer,
+  moviesState: moviesReducer,
 };
 
 export const selectUsername = (state: State) => {
@@ -25,6 +28,10 @@ export const selectUsername = (state: State) => {
 
 export const selectCriticModeText = (state: State) => {
   return state.criticModeTextState.criticModeText;
+};
+
+export const selectMovies = (state: State) => {
+  return state.moviesState.movies;
 };
 
 export const selectError = (state: State) => state.userState.error;

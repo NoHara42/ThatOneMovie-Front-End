@@ -1,0 +1,12 @@
+<app-container-header></app-container-header>
+<div *ngFor="let movie of movies;" class="d-flex flex-row flex-wrap justify-content-evenly">
+  <app-movie
+    [posterImgUrl]="movie.poster_path"
+    [title]="movie.title"
+    [popularity]="movie.vote_average"
+    [releaseDate]="movie.release_date"
+    [description]="movie.description"
+  >
+  </app-movie>
+</div>
+

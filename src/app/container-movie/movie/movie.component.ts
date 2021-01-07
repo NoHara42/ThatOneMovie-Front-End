@@ -8,18 +8,16 @@ import { EventEmitter } from '@angular/core';
 })
 export class MovieComponent implements OnInit {
 
-  @Input() username: String;
   @Input() posterImgUrl: String;
-  @Output() usernameEmitter = new EventEmitter();
+  @Input() title: String;
+  @Input() description: String;
+  @Input() releaseDate: String;
+  @Input() popularity: String;
 
   constructor() { }
 
   ngOnInit(): void {
 
-  }
-
-  handleClick() {
-    this.usernameEmitter.emit("Ned");
   }
 
 }
