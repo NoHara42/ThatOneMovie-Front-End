@@ -1,22 +1,21 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import GoogleUser = gapi.auth2.GoogleUser;
 import {GoogleAuthService} from 'ng-gapi';
 import {
   socialMediaAuthenticateUserFailedAction,
   socialMediaAuthenticateUserSuccessAction,
   UserPayload
 } from '../store/actions/user.actions';
-import {Observable, of} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 import {Store} from '@ngrx/store';
 import {Router} from '@angular/router';
+import GoogleUser = gapi.auth2.GoogleUser;
 
 @Injectable()
 export class AuthService {
 
   private readonly BASE_URL = 'http://localhost:5000';
-  private readonly REGISTER = '/users/register';
+  private readonly REGISTER = '/users';
   private readonly SIGN_IN = '/users/signIn';
   private readonly GET_TOKEN = '/users/getToken';
 

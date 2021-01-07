@@ -2,10 +2,13 @@
   <form [formGroup]="user">
     <h2 class="title">ThatOneMovie Registration</h2>
     <mat-form-field>
-      <input class="text" matInput matNativeControl formControlName="username" type="text" placeholder="Username"/>
+      <input class="text" matInput matNativeControl formControlName="name" type="text" placeholder="Username"/>
     </mat-form-field>
     <mat-form-field>
       <input class="text" matInput matNativeControl formControlName="password" type="password" placeholder="Password"/>
+    </mat-form-field>
+    <mat-form-field>
+      <input class="text" matInput matNativeControl formControlName="email" type="email" placeholder="Email"/>
     </mat-form-field>
     <button style="width: 60%" mat-raised-button class="mat-primary text m-4" (click)="registerUser()">Register</button>
   </form>
