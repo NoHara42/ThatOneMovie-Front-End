@@ -2,16 +2,16 @@
   <form [formGroup]="user">
     <h2 class="title"> ThatOneMovie Login</h2>
     <mat-form-field>
-      <input matInput matNativeControl formControlName="username" type="text" placeholder="Username"/>
+      <input matInput class="text" matNativeControl formControlName="username" type="text" placeholder="Username"/>
     </mat-form-field>
     <mat-form-field>
-      <input matInput matNativeControl formControlName="password" type="password" placeholder="Password"/>
+      <input matInput class="text" matNativeControl formControlName="password" type="password" placeholder="Password"/>
     </mat-form-field>
-    <button style="width: 80%" mat-raised-button class="mat-primary" (click)="signIn()">Login</button>
-    <button style="width: 80%" mat-raised-button class="mat-primary" (click)="socialMediaSignIn()">Login with Google</button>
-    <span class="mt-3">Don't have an account?</span>
-    <a class="m-2" routerLink="register">Register</a>
-    <span *ngIf="error" class="animate__animated" class="error-span">{{error}}</span>
+    <button style="width: 80%" class="text" mat-raised-button class="mat-primary" (click)="signIn()">Login</button>
+    <button style="width: 80%" class="text" mat-raised-button class="mat-primary" (click)="socialMediaSignIn()">Login with Google</button>
+    <span class="mt-3 text">Don't have an account?</span>
+    <a class="m-2 text" routerLink="register">Register</a>
+    <span *ngIf="error" class="animate__animated animate__headShake" class="error-span">{{error}}</span>
   </form>
 </div>
 
