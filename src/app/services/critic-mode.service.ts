@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { selectCriticModeText } from '../store/app.store';
@@ -13,10 +13,10 @@ export class CriticModeService {
 
   constructor(private store: Store, private httpClient: HttpClient) { }
 
-  postCriticModeTextToBackend(criticModeText) {
+  getCriticModeRecommendationsFromBackend(criticModeText) {
     try {
-      this.httpClient.post(`${this.BASE_URL}/recommend`, criticModeText).subscribe((response) => {
-        console.log(response)
+      this.httpClient.get(`${this.BASE_URL}/recommend`, criticModeText).subscribe((response) => {
+        console.log(response);
       });
     } catch (error) {
       console.error(error);
