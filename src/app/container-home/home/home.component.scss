@@ -1,0 +1,21 @@
+.navigation {
+  color: white;
+  outline: none !important;
+}
+::ng-deep .icon {
+  font-size: 50px;
+  vertical-align: middle;
+  outline: none !important;
+}
+
+button {
+  outline: none !important;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+  border: none;
+
+}

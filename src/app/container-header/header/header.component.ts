@@ -42,8 +42,4 @@ export class HeaderComponent {
       // reload the movies view once the critic mode has been deactivated
     }
   }
-
-  handleGetMovies() {
-    this.store.dispatch(authenticateUserActionSuccess("hello professor"));
-  }
 }

@@ -28,6 +28,7 @@ import {EffectsModule} from '@ngrx/effects';
 import {UserEffects} from './store/effects/user.effects';
 import { GoogleApiModule, NG_GAPI_CONFIG, NgGapiClientConfig } from 'ng-gapi';
 import { ContainerHomeComponent } from './container-home/container-home.component';
+import { MatIconModule } from '@angular/material/icon';
 
 const gapiClientConfig: NgGapiClientConfig = {
   client_id: '210021820396-1nnh4ocv1sks776cc9tam33gf37en6jp.apps.googleusercontent.com',
@@ -76,8 +77,9 @@ const gapiClientConfig: NgGapiClientConfig = {
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
+    MatIconModule
   ],
   providers: [Store, HttpClient, AuthService],
-  bootstrap: [AppComponent],
+  bootstrap: [ContainerHomeComponent],
 })
 export class AppModule { }

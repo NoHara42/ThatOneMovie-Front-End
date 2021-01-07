@@ -17,4 +17,14 @@ export class MoviesService {
   getMoviesFromBackend() {
     return this.httpClient.get(`${this.BASE_URL}/movies/${this.PAGE_NUMBER}`);
   }
+
+  nextPage() {
+    this.PAGE_NUMBER = String(Number(this.PAGE_NUMBER) + 1);
+    console.log("Page number",this.PAGE_NUMBER);
+  }
+
+  lastPage() {
+    this.PAGE_NUMBER = String(Number(this.PAGE_NUMBER) - 1);
+    console.log("Page number",this.PAGE_NUMBER);
+  }
 }
