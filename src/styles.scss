@@ -3,10 +3,28 @@
 html, body { height: 100%; max-width: 100%; overflow-x: hidden;}
 
 body { margin: 0; padding: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-body {
-  background-image: linear-gradient( #F2ACB5, #c78e96,  #6b7097, #4f5372)
-}
+// body {
+//   background-image: linear-gradient( #F2ACB5, #c78e96,  #6b7097, #4f5372)
+// }
 //Indigo #ACB4F2
 //Salmon Redish #F2ACB5
 //Cyan 1 #82DBE3
 //Cyan 2 #A7E6EC
+
+body {
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
