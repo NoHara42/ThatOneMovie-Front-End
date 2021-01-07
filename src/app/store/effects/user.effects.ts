@@ -11,11 +11,13 @@ import {
   UserPayload
 } from '../actions/user.actions';
 import {catchError, map, switchMap, tap} from 'rxjs/operators';
-import {StoreAction} from '../app.store';
+import {selectCriticModeText, StoreAction} from '../app.store';
 import {Store} from '@ngrx/store';
 import {of} from 'rxjs';
 import { MoviesService } from 'src/app/services/movies.service';
 import { moviesGetAction } from '../actions/movies.actions';
+import { CriticModeTextActionTypes } from '../actions/criticModeText.actions';
+import { CriticModeService } from 'src/app/services/critic-mode.service';
 
 @Injectable()
 export class UserEffects {
@@ -23,6 +25,7 @@ export class UserEffects {
   constructor(private action$: Actions,
               private store: Store,
               private moviesService: MoviesService,
+              private criticModeService: CriticModeService,
               private authService: AuthService,
               private router: Router) {
   }
@@ -50,6 +53,18 @@ export class UserEffects {
       )
     })
   );
+
+  @Effect()
+  getCriticModeText = this.action$.pipe(ofType(CriticModeTextActionTypes.UPDATE_CRITIC_MODE_TEXT_ACTION),
+  switchMap((action: StoreAction<any>) => {
+    return this.criticModeService.selectCriticModeText().pipe(
+     map((response) => {
+      console.log('getcriticmodetext effect', action.payload);
+      this.criticModeService.postCriticModeTextToBackend(response);
+     })
+    )
+  })
+);
 
   @Effect()
   registerUser = this.action$.pipe(

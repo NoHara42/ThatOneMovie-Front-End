@@ -80,6 +80,6 @@ const gapiClientConfig: NgGapiClientConfig = {
     MatIconModule
   ],
   providers: [Store, HttpClient, AuthService],
-  bootstrap: [ContainerHomeComponent],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

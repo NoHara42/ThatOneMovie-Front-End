@@ -5,14 +5,12 @@
       You can write a quick description of your ideal film here.
     </p>
     <p>
-      We will semantically compare your description with all known descriptions of movies from movie databases - all in the name of finding <b>that</b> film you're looking for. Yay!
+      We will semantically compare your description with all known descriptions of movies from movie databases - all in the name of finding <b>that</b> one film you're looking for. Yay!
     </p>
-      <mat-form-field>
-        <textarea matInput
+      <mat-form-field [style.width.vw]=40>
+        <input matInput
           [(formControl)]="this.criticModeTextDataControl"
-          cdkTextareaAutosize
-          #autosize="cdkTextareaAutosize">
-        </textarea>
+          cdkTextareaAutosize placeholder="Type here"/>
       </mat-form-field>
     </mat-dialog-content>
     <mat-dialog-actions align="end">
