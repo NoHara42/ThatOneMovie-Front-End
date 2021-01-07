@@ -11,8 +11,9 @@ import {registerUserAction, UserPayload} from '../../store/actions/user.actions'
 export class RegisterComponent implements OnInit {
 
   user =  new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl('')
+    name: new FormControl(''),
+    password: new FormControl(''),
+    email: new FormControl('')
   });
 
   @Output() emitRegisterUser = new EventEmitter<UserPayload>();
@@ -24,6 +25,6 @@ export class RegisterComponent implements OnInit {
   }
 
   registerUser(): void {
-    this.emitRegisterUser.emit(this.user.value);
+    this.emitRegisterUser.emit({...this.user.value, identifier: 0});
   }
 }
