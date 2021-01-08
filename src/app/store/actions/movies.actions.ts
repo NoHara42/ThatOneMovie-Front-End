@@ -1,13 +1,20 @@
 import {StoreAction} from '../app.store';
 
 export enum MoviesActions {
-  MOVIES_SUCCESS_ACTION = '[Movies] Movies get action'
+  GET_MOVIES_ACTION = '[Movies] Get movies action',
+  GET_MOVIES_SUCCESS_ACTION = '[Movies] Get movies success action'
 }
 
-export const moviesGetAction = (movies): StoreAction<Movies> =>
-  ({ type: MoviesActions.MOVIES_SUCCESS_ACTION, payload: movies });
+export const getMoviesAction = (): StoreAction<null> =>
+  ({ type: MoviesActions.GET_MOVIES_ACTION, payload: null});
 
+export const getMoviesActionSuccess = (movies): StoreAction<Movie[]> =>
+  ({ type: MoviesActions.GET_MOVIES_SUCCESS_ACTION, payload: movies });
 
-export interface Movies {
-  movies: any;
+export interface Movie {
+  overview: string;
+  poster_path: string;
+  release_date: string;
+  title: string;
+  vote_average: string;
 }

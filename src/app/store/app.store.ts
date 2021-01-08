@@ -37,3 +37,5 @@ export const selectMovies = (state: State) => {
 export const selectError = (state: State) => state.userState.error;
 
 export const selectToken = (state: State) => state.userState.token;
+
+export const selectShowCriticMode = (state: State) => state.criticModeTextState.showCriticMode;

@@ -6,18 +6,18 @@ import {
   authenticateUserActionFailed,
   authenticateUserActionSuccess,
   registerUserActionFailed,
-  registerUserActionSuccess, socialMediaAuthenticateUserFailedAction, socialMediaAuthenticateUserSuccessAction,
+  registerUserActionSuccess,
   UserActionTypes,
   UserPayload
 } from '../actions/user.actions';
 import {catchError, map, switchMap, tap} from 'rxjs/operators';
-import {selectCriticModeText, StoreAction} from '../app.store';
+import {StoreAction} from '../app.store';
 import {Store} from '@ngrx/store';
 import {of} from 'rxjs';
-import { MoviesService } from 'src/app/services/movies.service';
-import { moviesGetAction } from '../actions/movies.actions';
-import { CriticModeTextActionTypes, getCriticModeTextAction } from '../actions/criticModeText.actions';
-import { CriticModeService } from 'src/app/services/critic-mode.service';
+import {MoviesService} from 'src/app/services/movies.service';
+import {getMoviesAction, getMoviesActionSuccess, MoviesActions} from '../actions/movies.actions';
+import {CriticModeTextActionTypes, getCriticModeTextAction} from '../actions/criticModeText.actions';
+import {CriticModeService} from 'src/app/services/critic-mode.service';
 
 @Injectable()
 export class UserEffects {
@@ -37,20 +37,31 @@ export class UserEffects {
       return this.authService.authenticateUser(action.payload).pipe(
         map(response => authenticateUserActionSuccess(response)),
         tap(() => this.router.navigate(['/home'])),
+        tap(() => this.store.dispatch(getMoviesAction())),
         catchError((error) => of(authenticateUserActionFailed(error.error)))
       );
     })
   );
 
   @Effect()
-    getMovies = this.action$.pipe(ofType(UserActionTypes.AUTHENTICATE_USER_ACTION_SUCCESS),
+  socialAuthenticateUser = this.action$.pipe(
+    ofType(UserActionTypes.SOCIAL_MEDIA_AUTHENTICATE_USER),
+    switchMap((_: StoreAction<null>) => {
+      console.log('Social authenticate user');
+      this.authService.socialMediaSignIn();
+      return of(getMoviesAction());
+    })
+  );
+
+  @Effect()
+    getMovies = this.action$.pipe(ofType(MoviesActions.GET_MOVIES_ACTION),
     switchMap((action: StoreAction<UserPayload>) => {
       return this.moviesService.getMoviesFromBackend().pipe(
        map((response) => {
         console.log('movies effect', action.payload);
-        return moviesGetAction(response);
+        return getMoviesActionSuccess(response);
        })
-      )
+      );
     })
   );
 
@@ -63,7 +74,7 @@ export class UserEffects {
       this.criticModeService.getCriticModeRecommendationsFromBackend(response);
       return getCriticModeTextAction(response);
      })
-    )
+    );
   })
 );
 
@@ -73,6 +84,7 @@ export class UserEffects {
     switchMap((action: StoreAction<UserPayload>) => {
       return this.authService.registerUser(action.payload).pipe(
         map((response: any) => registerUserActionSuccess(response)),
+        tap(() => this.store.dispatch(getMoviesAction())),
         tap(() => this.router.navigate(['/home'])),
         catchError((error) => of(registerUserActionFailed(error.message)))
       );

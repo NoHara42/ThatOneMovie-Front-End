@@ -1,17 +1,17 @@
-import { StoreAction } from '../app.store';
-import { MoviesActions } from '../actions/movies.actions';
+import {StoreAction} from '../app.store';
+import {Movie, MoviesActions} from '../actions/movies.actions';
 
 export interface MoviesState {
-  movies: Array<any>;
+  movies: Movie[];
 }
 
 const INITIAL: MoviesState = {movies: []};
 
-export function moviesReducer(state = INITIAL, action: StoreAction<MoviesActions>): MoviesState {
+export function moviesReducer(state = INITIAL, action: StoreAction<Movie[]>): MoviesState {
   switch (action.type) {
-    case MoviesActions.MOVIES_SUCCESS_ACTION:
+    case MoviesActions.GET_MOVIES_SUCCESS_ACTION:
       console.log(action.payload);
-      return {...state, movies: action.payload as any};
+      return {...state, movies: action.payload as Movie[]};
     default:
       return state;
   }

@@ -25,6 +25,6 @@ export class LoginContainerComponent implements OnInit {
   }
 
   handleSocialMediaSignIn(): void {
-    this.authService.socialMediaSignIn();
+    this.store.dispatch(socialMediaAuthenticateUserAction());
   }
 }
