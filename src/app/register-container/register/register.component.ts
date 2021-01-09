@@ -25,6 +25,10 @@ export class RegisterComponent implements OnInit {
   }
 
   registerUser(): void {
-    this.emitRegisterUser.emit({...this.user.value, identifier: 0});
+    this.emitRegisterUser.emit({
+      name: this.user.value.name,
+      imageURL: '',
+      email: this.user.value.email
+    } as UserPayload);
   }
 }

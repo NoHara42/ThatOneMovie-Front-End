@@ -17,7 +17,6 @@ export class AuthService {
   private readonly BASE_URL = 'http://localhost:5000';
   private readonly REGISTER = '/users';
   private readonly SIGN_IN = '/users/signIn';
-  private readonly GET_TOKEN = '/users/getToken';
 
   constructor(private httpClient: HttpClient, private googleAuthService: GoogleAuthService, private store: Store, private router: Router) {
   }
@@ -30,18 +29,20 @@ export class AuthService {
     return this.httpClient.post(`${this.BASE_URL}${this.REGISTER}`, userPayload);
   }
 
-  getToken(res: GoogleUser): void {
-    this.httpClient.get(`${this.BASE_URL}${this.GET_TOKEN}`)
-      .subscribe((token: any) => {
-        this.router.navigate(['/home']);
-        this.store.dispatch(socialMediaAuthenticateUserSuccessAction({username: res.getBasicProfile().getEmail(), token: token.token}));
-      });
-  }
-
   socialMediaSignIn(): void {
     this.googleAuthService.getAuth().subscribe((auth) => {
       auth.signIn()
-        .then(res => this.getToken(res), (err) => this.store.dispatch(socialMediaAuthenticateUserFailedAction(err)));
+        .then(res => {
+          const userPayload = {
+            name: res.getBasicProfile().getName(),
+            imageURL: res.getBasicProfile().getImageUrl(),
+            email: res.getBasicProfile().getEmail()
+          } as UserPayload;
+          this.registerUser(userPayload).subscribe((token: any) => {
+            this.router.navigate(['/home']);
+            this.store.dispatch(socialMediaAuthenticateUserSuccessAction({username: res.getBasicProfile().getEmail(), token: token.token}));
+          });
+        }, (err) => this.store.dispatch(socialMediaAuthenticateUserFailedAction(err)));
     });
   }
 }

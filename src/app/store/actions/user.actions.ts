@@ -13,10 +13,9 @@ export enum UserActionTypes {
 }
 
 export interface UserPayload {
-  identifier: number;
   name: string;
+  imageURL: string;
   email: string;
-  password: string;
 }
 
 export interface UserResponsePayload {
