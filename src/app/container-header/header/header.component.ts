@@ -1,30 +1,43 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import { Store } from '@ngrx/store';
-import { authenticateUserActionSuccess } from 'src/app/store/actions/user.actions';
+import {Store} from '@ngrx/store';
 import {ContainerCriticModeModalComponent} from './container-critic-mode-modal/container-critic-mode-modal.component';
+import {toggleCriticModeTextActionFalse, toggleCriticModeTextActionTrue} from '../../store/actions/criticModeText.actions';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnChanges{
 
   @Input() criticModeText: string;
   @Input() username: string;
+  @Input() showCriticMode: boolean;
   @Output() criticModeTextEmitter = new EventEmitter<any>();
-  isCriticModeActive: boolean;
 
   constructor(private store: Store, public dialog: MatDialog) {
-    this.isCriticModeActive = false;
+  }
+
+  toggleDialog(): void {
+    if (!this.showCriticMode) {
+      this.store.dispatch(toggleCriticModeTextActionTrue());
+    } else {
+      this.store.dispatch(toggleCriticModeTextActionFalse());
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('Change happened');
+    console.log(this.showCriticMode);
+    if (changes.hasOwnProperty('showCriticMode')) {
+      this.openDialog();
+    }
   }
 
   openDialog(): void {
-    if (!this.isCriticModeActive) {
+    if (this.showCriticMode) {
       // case: critic mode activated
-      this.isCriticModeActive = true;
-
       const dialogRef = this.dialog.open(ContainerCriticModeModalComponent, {
         width: '60vw',
       });
@@ -34,12 +47,6 @@ export class HeaderComponent {
       dialogRef.afterClosed().subscribe(() => {
         console.log('The dialog was closed');
       });
-    } else {
-      // case: critic mode deactivated
-      this.isCriticModeActive = false;
-
-      // TODO:
-      // reload the movies view once the critic mode has been deactivated
     }
   }
 }

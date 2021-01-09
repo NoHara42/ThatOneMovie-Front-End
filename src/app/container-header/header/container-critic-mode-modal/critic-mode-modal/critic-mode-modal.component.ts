@@ -17,6 +17,7 @@ export class CriticModeModalComponent implements OnInit {
 
   @ViewChild('autosize') autosize: CdkTextareaAutosize;
   @Output() public criticModeTextEmitter = new EventEmitter<string>();
+  @Output() public cancelEmitter = new EventEmitter<null>();
 
   public criticModeTextDataControl: FormControl;
 
@@ -43,9 +44,13 @@ export class CriticModeModalComponent implements OnInit {
         .subscribe(() => this.autosize.resizeToFitContent(true));
   }
 
-  handleSubmitData() {
-    console.log("Emitting:", this.criticModeTextDataControl.value);
+  handleSubmitData(): void {
+    console.log('Emitting:', this.criticModeTextDataControl.value);
     this.criticModeTextEmitter.emit(this.criticModeTextDataControl.value);
+  }
+
+  handleCancelDialog(): void {
+    this.cancelEmitter.emit(null);
   }
 
 }

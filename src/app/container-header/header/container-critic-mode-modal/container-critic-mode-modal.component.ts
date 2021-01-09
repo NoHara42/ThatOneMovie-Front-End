@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {updateCriticModeTextAction} from 'src/app/store/actions/criticModeText.actions';
+import {toggleCriticModeTextActionFalse, updateCriticModeTextAction} from 'src/app/store/actions/criticModeText.actions';
 
 @Component({
   selector: 'app-container-critic-mode-modal',
@@ -16,4 +16,7 @@ export class ContainerCriticModeModalComponent {
     this.store.dispatch(updateCriticModeTextAction($event));
   }
 
+  handleCancelDialog(): void {
+    this.store.dispatch(toggleCriticModeTextActionFalse());
+  }
 }

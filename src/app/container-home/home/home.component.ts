@@ -6,6 +6,7 @@ import { MoviesService } from 'src/app/services/movies.service';
 import { authenticateUserActionSuccess } from 'src/app/store/actions/user.actions';
 import { selectMovies } from '../../store/app.store';
 import { ContainerHomeComponent } from '../container-home.component';
+import {getMoviesAction} from '../../store/actions/movies.actions';
 
 @Component({
   selector: 'app-home',
@@ -32,6 +33,6 @@ export class HomeComponent implements OnInit {
   }
 
   handleGetMovies() {
-    this.store.dispatch(authenticateUserActionSuccess("hello professor"));
+    this.store.dispatch(getMoviesAction());
   }
 }

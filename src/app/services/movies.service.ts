@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { MoviesActions } from '../store/actions/movies.actions';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {Store} from '@ngrx/store';
 
 @Injectable({
   providedIn: 'root'
@@ -20,11 +19,13 @@ export class MoviesService {
 
   nextPage() {
     this.PAGE_NUMBER = String(Number(this.PAGE_NUMBER) + 1);
-    console.log("Page number",this.PAGE_NUMBER);
+    console.log("Page number", this.PAGE_NUMBER);
   }
 
   lastPage() {
-    this.PAGE_NUMBER = String(Number(this.PAGE_NUMBER) - 1);
-    console.log("Page number",this.PAGE_NUMBER);
+    if (Number(this.PAGE_NUMBER) > 1) {
+      this.PAGE_NUMBER = String(Number(this.PAGE_NUMBER) - 1);
+    }
+    console.log("Page number", this.PAGE_NUMBER);
   }
 }
