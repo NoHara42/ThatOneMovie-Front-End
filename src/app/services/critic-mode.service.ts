@@ -15,9 +15,12 @@ export class CriticModeService {
 
   getCriticModeRecommendationsFromBackend(criticModeText) {
     try {
-      this.httpClient.get(`${this.BASE_URL}/recommend`, criticModeText).subscribe((response) => {
+      const params = new HttpParams().set("criticModeText", criticModeText);
+
+      this.httpClient.get(`${this.BASE_URL}/recommend/`, {params}).subscribe((response) => {
         console.log(response);
       });
+
     } catch (error) {
       console.error(error);
     }
