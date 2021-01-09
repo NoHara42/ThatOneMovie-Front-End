@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import {selectCriticModeText, selectShowCriticMode, selectUsername} from '../store/app.store';
 import { updateCriticModeTextAction } from '../store/actions/criticModeText.actions';
+import {setSortConditionAction} from '../store/actions/movies.actions';
 
 @Component({
   selector: 'app-container-header',
@@ -28,4 +29,7 @@ export class ContainerHeaderComponent implements OnInit {
     this.store.dispatch(updateCriticModeTextAction($event));
   }
 
+  handleSort($event): void {
+    this.store.dispatch(setSortConditionAction($event));
+  }
 }

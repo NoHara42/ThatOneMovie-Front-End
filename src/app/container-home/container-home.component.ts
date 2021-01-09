@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { authenticateUserActionSuccess } from '../store/actions/user.actions';
-import { selectMovies } from '../store/app.store';
+import {selectMovies, selectSortCriteria} from '../store/app.store';
 import { HomeComponent } from './home/home.component';
 
 @Component({
@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 export class ContainerHomeComponent implements OnInit {
 
   public movies$: Observable<Array<any>>;
+  public sortCriteria$: Observable<string>;
 
   constructor(private store: Store) { }
 
@@ -24,6 +25,7 @@ export class ContainerHomeComponent implements OnInit {
   getMovies() {
     console.log("container got movies");
     this.movies$ = this.store.select(selectMovies);
+    this.sortCriteria$ = this.store.select(selectSortCriteria);
   }
 
   handleGetMovies() {
