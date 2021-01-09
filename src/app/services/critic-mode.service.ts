@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { selectCriticModeText } from '../store/app.store';
 
 @Injectable({
@@ -15,11 +16,9 @@ export class CriticModeService {
 
   getCriticModeRecommendationsFromBackend(criticModeText) {
     try {
-      const params = new HttpParams().set("criticModeText", criticModeText);
 
-      this.httpClient.get(`${this.BASE_URL}/recommend/`, {params}).subscribe((response) => {
-        console.log(response);
-      });
+      const params = new HttpParams().set("criticModeText", criticModeText);
+      return this.httpClient.get(`${this.BASE_URL}/recommend/`, {params});
 
     } catch (error) {
       console.error(error);

@@ -18,6 +18,7 @@ import {MoviesService} from 'src/app/services/movies.service';
 import {getMoviesAction, getMoviesActionSuccess, MoviesActions} from '../actions/movies.actions';
 import {CriticModeTextActionTypes, getCriticModeTextAction, toggleCriticModeTextActionFalse} from '../actions/criticModeText.actions';
 import {CriticModeService} from 'src/app/services/critic-mode.service';
+import { HomeComponent } from 'src/app/container-home/home/home.component';
 
 @Injectable()
 export class UserEffects {
@@ -68,13 +69,11 @@ export class UserEffects {
   @Effect()
   getCriticModeText = this.action$.pipe(ofType(CriticModeTextActionTypes.UPDATE_CRITIC_MODE_TEXT_ACTION),
     switchMap((action: StoreAction<any>) => {
-      return this.criticModeService.selectCriticModeText().pipe(
+      return this.criticModeService.getCriticModeRecommendationsFromBackend(action.payload).pipe(
         map((response) => {
-          console.log('getcriticmoderecommendations effect', action.payload);
-          this.criticModeService.getCriticModeRecommendationsFromBackend(response);
-          return getCriticModeTextAction(response);
-        }),
-        tap(() => this.store.dispatch(toggleCriticModeTextActionFalse()))
+          console.log('criticmode movie update effect', action.payload);
+          return getMoviesActionSuccess(response);
+        })
       );
     })
   );
