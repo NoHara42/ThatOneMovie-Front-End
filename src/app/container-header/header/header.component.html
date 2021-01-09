@@ -15,16 +15,8 @@
           <mat-label class="header-text">
             Sort by:
           </mat-label>
-          <mat-select>
-            <mat-option>
-              Popularity
-            </mat-option>
-            <mat-option>
-              Rating
-            </mat-option>
-            <mat-option>
-              Year
-            </mat-option>
+          <mat-select (valueChange)="handleSortChange($event)">
+            <mat-option *ngFor="let sort of sortingOptions" [value]="sort">{{sort}}</mat-option>
           </mat-select>
       </mat-form-field>
     </div>

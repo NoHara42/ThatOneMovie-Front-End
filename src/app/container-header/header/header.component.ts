@@ -15,6 +15,9 @@ export class HeaderComponent implements OnChanges{
   @Input() username: string;
   @Input() showCriticMode: boolean;
   @Output() criticModeTextEmitter = new EventEmitter<any>();
+  @Output() sortEmitter = new EventEmitter<string>();
+
+  sortingOptions = ['Rating', 'Newest', 'Oldest'];
 
   constructor(private store: Store, public dialog: MatDialog) {
   }
@@ -48,5 +51,10 @@ export class HeaderComponent implements OnChanges{
         console.log('The dialog was closed');
       });
     }
+  }
+
+  handleSortChange(event: string): void {
+    console.log(event);
+    this.sortEmitter.emit(event);
   }
 }
