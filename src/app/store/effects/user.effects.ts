@@ -73,7 +73,8 @@ export class UserEffects {
         map((response) => {
           console.log('criticmode movie update effect', action.payload);
           return getMoviesActionSuccess(response);
-        })
+        }),
+        tap(() => this.store.dispatch(toggleCriticModeTextActionFalse()))
       );
     })
   );
