@@ -123,6 +123,10 @@
               "devServerTarget": "ThatOneMovie-Front-End:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
     }
