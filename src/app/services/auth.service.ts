@@ -14,7 +14,7 @@ import GoogleUser = gapi.auth2.GoogleUser;
 @Injectable()
 export class AuthService {
 
-  private readonly BASE_URL = 'http://localhost:5000';
+  private readonly BASE_URL = 'https://thatonemovie-backend.herokuapp.com';
   private readonly REGISTER = '/users';
   private readonly SIGN_IN = '/users/signIn';
 

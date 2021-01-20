@@ -1,7 +1,7 @@
 {
   "/*":
   {
-      "target" : "http://localhost:5000",
+      "target" : "https://thatonemovie-backend.herokuapp.com",
       "secure" : false,
       "logLevel": "debug"
   }
