@@ -1,5 +1,5 @@
 {
-  "name": "that-one-movie-front-end",
+  "name": "thatonemovie-frontend",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "ng build --prod --base-href=thatOneMovie-Front-End"
+    "deploy": "ng build --prod --base-href=/thatonemovie-frontend/"
   },
   "private": true,
   "dependencies": {
