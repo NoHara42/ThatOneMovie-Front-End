@@ -8,7 +8,7 @@ import {Store} from '@ngrx/store';
 })
 export class MoviesService {
 
-  private readonly BASE_URL = 'https://thatonemovie-backend.herokuapp.com';
+  private readonly BASE_URL = 'https://that-one-movie-backend.herokuapp.com';
   private PAGE_NUMBER = '1';
 
   constructor(private router: Router, private store: Store, private httpClient: HttpClient) { }

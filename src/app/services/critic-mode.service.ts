@@ -10,7 +10,7 @@ import { selectCriticModeText } from '../store/app.store';
 export class CriticModeService {
 
   private criticModeText: string;
-  private readonly BASE_URL = 'https://thatonemovie-backend.herokuapp.com';
+  private readonly BASE_URL = 'https://that-one-movie-backend.herokuapp.com/';
 
   constructor(private store: Store, private httpClient: HttpClient) { }
 
